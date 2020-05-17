@@ -160,8 +160,8 @@ GlueMapWindow::OnMouseDown(PixelPoint p)
   }
 
   mouse_down_clock.Update();
-  arm_mapitem_list = HasFocus();
 
+  const bool had_focus = HasFocus();
   SetFocus();
 
   drag_start = p;
@@ -174,6 +174,7 @@ GlueMapWindow::OnMouseDown(PixelPoint p)
   }
 
   drag_start_geopoint = visible_projection.ScreenToGeo(p);
+  arm_mapitem_list = had_focus;
 
   switch (follow_mode) {
   case FOLLOW_SELF:
@@ -418,36 +419,37 @@ GlueMapWindow::OnPaintBuffer(Canvas &canvas)
 #endif
 }
 
-bool
-GlueMapWindow::OnTimer(WindowTimer &timer)
+void
+GlueMapWindow::OnMapItemTimer() noexcept
 {
-  if (timer == map_item_timer) {
-    map_item_timer.Cancel();
-    if (!InputEvents::IsDefault() && !IsPanning()) {
-      InputEvents::HideMenu();
-      return true;
-    }
-    ShowMapItems(drag_start_geopoint, false);
-    return true;
-#ifdef ENABLE_OPENGL
-  } else if (timer == kinetic_timer) {
-    if (kinetic_x.IsSteady() && kinetic_y.IsSteady()) {
-      kinetic_timer.Cancel();
-    } else {
-      auto location = drag_projection.ScreenToGeo(kinetic_x.GetPosition(),
-                                                  kinetic_y.GetPosition());
-      location = drag_projection.GetGeoLocation() +
-          drag_start_geopoint - location;
+  if (!InputEvents::IsDefault() && !IsPanning()) {
+    InputEvents::HideMenu();
+    return;
+  }
 
-      SetLocation(location);
-      QuickRedraw();
-    }
-
-    return true;
-#endif
-  } else
-    return MapWindow::OnTimer(timer);
+  ShowMapItems(drag_start_geopoint, false);
 }
+
+#ifdef ENABLE_OPENGL
+
+void
+GlueMapWindow::OnKineticTimer() noexcept
+{
+  if (kinetic_x.IsSteady() && kinetic_y.IsSteady()) {
+    kinetic_timer.Cancel();
+    return;
+  }
+
+  auto location = drag_projection.ScreenToGeo(kinetic_x.GetPosition(),
+                                              kinetic_y.GetPosition());
+  location = drag_projection.GetGeoLocation() +
+    drag_start_geopoint - location;
+
+  SetLocation(location);
+  QuickRedraw();
+}
+
+#endif
 
 void
 GlueMapWindow::Render(Canvas &canvas, const PixelRect &rc)
