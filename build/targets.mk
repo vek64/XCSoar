@@ -6,7 +6,7 @@ TARGETS = PC WIN64 \
 	ANDROIDAARCH64 ANDROIDX64 \
 	ANDROIDFAT \
 	CYGWIN \
-	OSX64 IOS32 IOS64
+	OSX64 IOS32 IOS64 TEGRA
 
 ifeq ($(TARGET),)
   ifeq ($(HOST_IS_UNIX),y)
@@ -202,6 +202,15 @@ ifeq ($(TARGET),KOBO)
   override TARGET = NEON
   TARGET_IS_KOBO = y
 endif
+
+
+ifeq ($(TARGET),TEGRA)
+  TARGET_IS_ARM = y
+  TARGET_IS_ARMHF = y
+  ARMV7 := y
+  override TARGET = UNIX
+endif
+
 
 ifeq ($(TARGET),NEON)
   # Experimental target for generic ARMv7 with NEON on Linux
