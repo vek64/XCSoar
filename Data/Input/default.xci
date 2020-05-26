@@ -77,9 +77,13 @@ event=Beep 1
 # mode=default
 # ------------
 
+# ------------
+# mode=default
+# ------------
+
 mode=Nav1 Nav2 Display1 Display2 Config1 Config2 Config3 Info1 Info2 Menu Vario1 Vario2
 type=key
-data=v
+data=b
 event=Mode default
 
 mode=default pan
@@ -91,6 +95,8 @@ mode=default.Traffic
 type=key
 data=j
 event=Traffic details
+
+
 
 ###### pan mode
 
@@ -116,37 +122,40 @@ event=Pan right
 
 mode=pan
 type=key
-data=APP1
+data=b
 event=Pan off
 label=Pan\nOff
 location=1
 
 mode=pan
 type=key
-data=APP2
+data=i
 event=Zoom in
 label=Zoom\nIn
 location=2
 
 mode=pan
 type=key
-data=APP3
+data=o
 event=Zoom out
 label=Zoom\nOut
 location=3
 
 mode=pan
 type=key
-data=APP4
+data=j
 event=NearestMapItems
 label=What's\nhere?
 location=4
+
+
+
 
 ###### main entry buttons
 
 mode=default
 type=key
-data=F1
+data=v
 event=QuickMenu
 
 mode=default
@@ -169,7 +178,7 @@ event=Mode default
 
 mode=default
 type=key
-data=F5
+data=j
 event=GotoLookup
 event=Mode default
 
@@ -193,7 +202,7 @@ event=Mode default
 
 mode=default
 type=key
-data=MENU
+data=v
 event=Mode Menu
 
 mode=default
@@ -216,16 +225,18 @@ type=key
 data=APP4
 event=Mode Info1
 
+
+
 # Always active buttons. (unless over-written)
 
 mode=default
 type=key
-data=n
+data=o
 event=Zoom out
 
 mode=default
 type=key
-data=u
+data=i
 event=Zoom in
 
 mode=default
@@ -244,6 +255,8 @@ mode=default
 type=key
 data=k
 event=ScreenModes next
+
+
 
 # Gestures
 
