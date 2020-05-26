@@ -1,5 +1,5 @@
 TARGETS = PC WIN64 \
-	PPC2000 PPC2003 PPC2003X WM5 WM5X \
+	PPC2000 PPC2003 PPC2003X PPC200320 PPC200330 WM5 WM5X \
 	ALTAIR \
 	UNIX UNIX32 UNIX64 OPT \
 	WAYLAND \
@@ -78,6 +78,7 @@ ifeq ($(TARGET),PPC2003X)
   override TARGET = PPC2003
 endif
 
+
 ifeq ($(TARGET),WM5X)
   TARGET_IS_ARM = y
   XSCALE := y
@@ -155,6 +156,37 @@ ifeq ($(TARGET),PPC2003)
 
   HAVE_CE := y
 endif
+
+
+
+
+ifeq ($(TARGET),PPC200320)
+  TARGET_IS_ARM = y
+  TARGET_IS_ARMHF = y
+  ARMV7 := y
+  NEON := n
+  CE_MAJOR := 4
+  CE_MINOR := 00
+  PCPU := ARMV4
+
+  HAVE_CE := y
+  override TARGET = PPC2003
+ endif
+
+
+ifeq ($(TARGET),PPC200330)
+  TARGET_IS_ARM = y
+  TARGET_IS_ARMHF = y
+  ARMV7 := y
+  NEON := y
+  CE_MAJOR := 4
+  CE_MINOR := 00
+  PCPU := ARMV4
+
+  HAVE_CE := y
+  override TARGET = PPC2003
+endif
+
 
 ifeq ($(TARGET),PC)
   ifeq ($(X64),y)

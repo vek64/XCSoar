@@ -79,39 +79,39 @@ event=Beep 1
 
 mode=Nav1 Nav2 Display1 Display2 Config1 Config2 Config3 Info1 Info2 Menu Vario1 Vario2
 type=key
-data=ESCAPE
+data=v
 event=Mode default
 
 mode=default pan
 type=key
-data=ESCAPE
+data=v
 event=Page restore
 
 mode=default.Traffic
 type=key
-data=RETURN
+data=j
 event=Traffic details
 
 ###### pan mode
 
 mode=pan
 type=key
-data=DOWN
+data=n
 event=Pan down
 
 mode=pan
 type=key
-data=UP
+data=u
 event=Pan up
 
 mode=pan
 type=key
-data=LEFT
+data=h
 event=Pan left
 
 mode=pan
 type=key
-data=RIGHT
+data=k
 event=Pan right
 
 mode=pan
@@ -220,29 +220,29 @@ event=Mode Info1
 
 mode=default
 type=key
-data=DOWN
+data=n
 event=Zoom out
 
 mode=default
 type=key
-data=UP
+data=u
 event=Zoom in
 
 mode=default
 type=key
-data=RETURN
+data=j
 event=FLARMRadar toggle
 event=ClearAirspaceWarnings
 event=ClearStatusMessages
 
 mode=default
 type=key
-data=LEFT
+data=h
 event=ScreenModes previous
 
 mode=default
 type=key
-data=RIGHT
+data=k
 event=ScreenModes next
 
 # Gestures
@@ -931,14 +931,14 @@ location=9
 
 mode=Display1.Traffic
 type=key
-data=6
+data=i
 event=Traffic zoom in
 label=Zoom\nIn
 location=5
 
 mode=Display1.Traffic
 type=key
-data=7
+data=o
 event=Traffic zoom out
 label=Zoom\nOut
 location=6
